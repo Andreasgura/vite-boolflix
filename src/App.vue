@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent />
+  <HeaderComponent @findmovies="searchMovies"/>
   <MainComponent />
 </template>
 
@@ -21,13 +21,17 @@ export default {
   },
   methods: {
     searchMovies() {
+      this.store.flag = false
       axios.get(this.store.baseUrl + this.store.endpoints.movies, this.store.options).then((response) => {
         console.log(response.data);
+        this.store.movies = response.data.results
+        console.log(this.store.movies);
+        this.store.flag = true
       })
     }
   },
   created() {
-    this.searchMovies()
+    // this.searchMovies()
   }
 }
 </script>

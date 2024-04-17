@@ -4,20 +4,35 @@
             <div>
                 netflix
             </div>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                v-model="store.options.params.query">
+                <button class="btn btn-outline-success" type="submit"
+                @click.prevent="$emit('findmovies')"
+                @keyup.enter.prevent="$emit('findmovies')">
+                Search
+            </button>
+            </form>
         </div>
     </header>
 </template>
 
 <script>
-    export default {
-        name: 'HeaderComponent',
-        
-    }
+import { store } from '../../store.js';
+export default {
+    name: 'HeaderComponent',
+    data() {
+        return {
+            store,
+        }
+    },
+
+}
 </script>
 
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+
 header {
     background-color: $headerbg;
     color: white

@@ -1,17 +1,24 @@
 <template>
-    <ul>
-        <li><img :src="image" alt=""></li>
-        <li> Titolo: {{ title }}</li>
-        <li>Titolo Originale: {{ original_title }}</li>
-        <li>Lingua: {{ lenguage.toUpperCase() }}</li>
-        <li>
-            <span>voto: </span>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <img :src="image" alt="">
+            </div>
+            <div class="flip-card-back">
+                <h2>Titolo: {{ title }}</h2>
+                <div>Titolo Originale: {{ original_title }}</div>
+                <div>
+                    <span>voto: </span>
+                    <i class="fa-solid fa-star" v-for="n in vote_average"></i>
+                </div>
+                <div>
+                    Overview: {{ descritpion }}
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <i class="fa-solid fa-star" v-for="n in vote_average"></i>
-
-        </li>
-        
-    </ul>
+    
 </template>
 
 <script>
@@ -28,7 +35,8 @@ export default {
         title: String,
         original_title: String,
         lenguage: String,
-        vote_average: Number
+        vote_average: Number,
+        descritpion: String
     }
 }
 </script>
@@ -36,5 +44,49 @@ export default {
 <style lang="scss" scoped>
 .fa-star {
     color: yellow;
+}
+.flip-card {
+  background-color: transparent;
+  width: 342px;
+  aspect-ratio: 2 / 3;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+  width: 342px;
+  aspect-ratio: 2 / 3;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: black;
+  color: white;
+  transform: rotateY(180deg);
 }
 </style>

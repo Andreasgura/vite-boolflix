@@ -1,30 +1,22 @@
 <template>
-    <div v-if="store.flag">
-        <CardWrapper/>
-    </div>
-
-<div>  
-     <CardWrapper/>
-    </div>
+    <CardWrapper />
 </template>
 
 <script>
 import CardWrapper from './CardWrapper.vue';
 import { store } from '../../store.js';
 
-    export default {
-        name: 'MainComponent',
-        components: {
-            CardWrapper
-        },
-        data() {
-            return {
-                store,
-            }
+export default {
+    name: 'MainComponent',
+    components: {
+        CardWrapper
+    },
+    data() {
+        return {
+            store,
         }
     }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

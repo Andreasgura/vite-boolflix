@@ -27,6 +27,7 @@ export default {
         this.store.movies = response.data.results
         console.log(this.store.movies);
         this.store.flagMovies = true
+       
       })
     },
     searchSeries() {

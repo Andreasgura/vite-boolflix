@@ -1,17 +1,35 @@
 <template>
   <HeaderComponent />
+  <MainComponent />
 </template>
 
 <script>
-  import HeaderComponent from './assets/components/HeaderComponent.vue'
-  export default {
-    name: 'App',
-    components: {
-      HeaderComponent
+import HeaderComponent from './assets/components/HeaderComponent.vue'
+import MainComponent from './assets/components/MainComponent.vue'
+import { store } from './store.js'
+import axios from 'axios'
+export default {
+  name: 'App',
+  components: {
+    HeaderComponent,
+    MainComponent,
+  },
+  data() {
+    return {
+      store
     }
+  },
+  methods: {
+    searchMovies() {
+      axios.get(this.store.baseUrl + this.store.endpoints.movies, this.store.options).then((response) => {
+        console.log(response.data);
+      })
+    }
+  },
+  created() {
+    this.searchMovies()
   }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,8 +1,7 @@
 import {reactive} from 'vue' ;
 
 export const store = reactive({
-    baseUrl: 'https://api.themoviedb.org/3/',
-    
+    baseUrl: 'https://api.themoviedb.org/3/', 
     endpoints: {
         movies: 'search/movie',
         series: 'search/tv'
@@ -18,4 +17,6 @@ export const store = reactive({
     flagSeries: false,  
     movies: [],
     series: [],
+    baseImg: 'https://image.tmdb.org/t/p/w342',
+    
 })

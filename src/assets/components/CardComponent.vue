@@ -1,5 +1,6 @@
 <template>
    <ul>
+    <li><img :src="image" alt=""></li>
      <li> Titolo: {{title}}</li>
      <li>Titolo Originale: {{ original_title }}</li>
      <li>Lingua: {{ lenguage.toUpperCase() }}</li>
@@ -17,6 +18,7 @@
             }
         },
         props: {
+            image: String,
             title: String,
             original_title: String,
             lenguage: String,

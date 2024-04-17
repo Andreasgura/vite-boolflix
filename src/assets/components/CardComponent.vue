@@ -2,7 +2,7 @@
    <ul>
      <li> Titolo: {{title}}</li>
      <li>Titolo Originale: {{ original_title }}</li>
-     <li>Lingua: {{ lenguage }}</li>
+     <li>Lingua: {{ lenguage.toUpperCase() }}</li>
      <li>Voto: {{ vote_average }}</li>
    </ul>
 </template>

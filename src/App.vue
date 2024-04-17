@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent @findmovies="searchMovies"/>
+  <HeaderComponent @findmovies="printMoviesAndSeries" />
   <MainComponent />
 </template>
 
@@ -21,14 +21,26 @@ export default {
   },
   methods: {
     searchMovies() {
-      this.store.flag = false
+      this.store.flagMovies = false
       axios.get(this.store.baseUrl + this.store.endpoints.movies, this.store.options).then((response) => {
         console.log(response.data);
         this.store.movies = response.data.results
         console.log(this.store.movies);
-        this.store.flag = true
+        this.store.flagMovies = true
       })
-    }
+    },
+    searchSeries() {
+      this.store.flagSeries = false
+      axios.get(this.store.baseUrl + this.store.endpoints.series, this.store.options).then((response) => {
+        this.store.series = response.data.results
+        this.store.flagSeries = true
+      })
+    },
+    printMoviesAndSeries() {
+      this.searchMovies()
+      this.searchSeries()
+    },
+
   },
   created() {
     // this.searchMovies()

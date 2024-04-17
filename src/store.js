@@ -14,7 +14,8 @@ export const store = reactive({
             language: 'it-IT'
         }
     },
-    flag: false,   
+    flagMovies: false, 
+    flagSeries: false,  
     movies: [],
     series: [],
 })

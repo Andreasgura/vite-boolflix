@@ -1,8 +1,6 @@
 <template>
     <div v-if="store.flag">
-        <div v-for="(movie) in store.movies">
-            {{movie.title}}
-        </div>
+        <CardWrapper/>
     </div>
 
 <div>  

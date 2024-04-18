@@ -2,18 +2,19 @@
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img :src="image" alt="">
+                <img :src="store.baseImg + item.poster_path" :alt="item.title">
             </div>
             <div class="flip-card-back">
-                <h2>Titolo: {{ title }}</h2>
-                <div>Titolo Originale: {{ original_title }}</div>
+                <h2>Titolo: {{ item.title }}</h2>
+                <div>Titolo Originale: {{ item.original_title }}</div>
                 <div>
                     <span>voto: </span>
-                    <i class="fa-solid fa-star" v-for="n in vote_average"></i>
+                    <i class="fa-solid fa-star" v-for="n in starsVote()"></i>
                 </div>
                 <div>
-                    Overview: {{ descritpion }}
+                    Overview: {{ item.overview }}
                 </div>
+                
             </div>
         </div>
     </div>
@@ -31,12 +32,12 @@ export default {
         }
     },
     props: {
-        image: String,
-        title: String,
-        original_title: String,
-        lenguage: String,
-        vote_average: Number,
-        descritpion: String
+        item: Object
+    },
+    methods: {
+      starsVote() {
+          return Math.round(this.item.vote_average / 2)
+        }
     }
 }
 </script>

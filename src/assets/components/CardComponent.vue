@@ -1,58 +1,63 @@
 <template>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img :src="store.baseImg + item.poster_path" :alt="item.title">
-            </div>
-            <div class="flip-card-back">
-                <h2>Titolo: {{ item.title }}</h2>
-                <div>Titolo Originale: {{ item.original_title }}</div>
-                <div>
-                    <span>voto: </span>
-                    <i class="fa-solid fa-star" v-for="n in starsVote()"></i>
-                </div>
-                <div>
-                    Overview: {{ item.overview }}
-                </div>
-                
-            </div>
+  <div class="flip-card mb-3 ">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img :src="store.baseImg + item.poster_path" :alt="item.title">
+      </div>
+      <div class="flip-card-back">
+        <div class=" p-4 ">
+          <h2>Titolo: {{ item.title || item.name}}</h2>
+        <div>Titolo Originale: {{ item.original_title || item.original_name }}</div>
+        <div>
+          <span>voto: </span>
+          <i class="fa-solid fa-star" v-for="n in starsVote()"></i>
         </div>
-    </div>
+        <div>
+          Overview: {{ item.overview }}
+        </div>
 
-    
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </template>
 
 <script>
 import { store } from '../../store.js';
 export default {
-    name: 'CardComponent',
-    data() {
-        return {
-            store,
-        }
-    },
-    props: {
-        item: Object
-    },
-    methods: {
-      starsVote() {
-          return Math.round(this.item.vote_average / 2)
-        }
+  name: 'CardComponent',
+  data() {
+    return {
+      store,
     }
+  },
+  props: {
+    item: Object
+  },
+  methods: {
+    starsVote() {
+      return Math.round(this.item.vote_average / 2)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .fa-star {
-    color: yellow;
+  color: yellow;
 }
+
 .flip-card {
   background-color: transparent;
-  width: 342px;
+  width: 200px;
   aspect-ratio: 2 / 3;
   border: 1px solid #f1f1f1;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px;
+  /* Remove this if you don't want the 3D effect */
 }
+
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -68,11 +73,13 @@ export default {
 }
 
 /* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
+  /* Safari */
   backface-visibility: hidden;
 }
 
@@ -80,7 +87,7 @@ export default {
 .flip-card-front {
   background-color: #bbb;
   color: black;
-  width: 342px;
+  width: 200px;
   aspect-ratio: 2 / 3;
 }
 
@@ -89,5 +96,10 @@ export default {
   background-color: black;
   color: white;
   transform: rotateY(180deg);
+  overflow-y: auto;
+}
+img {
+  width: 200px;
+  aspect-ratio: 2 / 3;
 }
 </style>

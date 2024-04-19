@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.store.movies.length > 0">
+    <div v-if="!store.flag">
         <CardList listTitle="Film" :list="store.movies" />
         <CardList listTitle="Serie Tv" :list="store.series" />
     </div>

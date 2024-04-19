@@ -44,6 +44,8 @@ export default {
     printMoviesAndSeries() {
       this.searchMovies()
       this.searchSeries()
+      this.store.flag = this.store.options.params.query !== ''? false : true
+
     },
     trendingMoviesDay() {
       axios.get(this.store.baseUrl + this.store.endpoints.trendingMoviesDay, this.store.options).then((response) => {
@@ -59,20 +61,11 @@ export default {
     }
 
   },
-  computed: {
-        showDefoult() {
-            if (!this.store.options.params.query) {
-                this.store.movies = [];
-                this.store.series = [];
-        } else {
-            this.store.flag = false
-        }
-    }
-    },
+  
   created() {
     this.trendingMoviesDay();
     this.trendingSeriesDay();
-    this.showDefoult
+    
   }
 }
 </script>

@@ -1,11 +1,13 @@
 <template>
+  
   <div class="flip-card mb-3 ">
     <div class="flip-card-inner">
       <div class="flip-card-front">
         <img v-if="item.poster_path" :src="store.baseImg + item.poster_path" :alt="item.title" >
-        <img v-else src="/images/placeholder.jpg" :alt="item.title" >
+        <img v-else src="/images/Def.Img.jpg" :alt="item.title" >
       </div>
       <div class="flip-card-back">
+        <ModalCard/>
         <div class=" p-4 ">
           <h2>Titolo: {{ item.title || item.name}}</h2>
         <div>Titolo Originale: {{ item.original_title || item.original_name }}</div>
@@ -27,8 +29,12 @@
 
 <script>
 import { store } from '../../store.js';
+import ModalCard from './ModalCard.vue';
 export default {
   name: 'CardComponent',
+  components: {
+    ModalCard
+  },
   data() {
     return {
       store,
@@ -40,8 +46,15 @@ export default {
   methods: {
     starsVote() {
       return Math.round(this.item.vote_average / 2)
+    },
+    setOpenTrue() {
+      this.store.flag = true
+    },
+    setOpenFalse() {
+      this.store.flag = false
     }
   }
+  
 }
 </script>
 

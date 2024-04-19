@@ -2,7 +2,8 @@
   <div class="flip-card mb-3 ">
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img :src="store.baseImg + item.poster_path" :alt="item.title">
+        <img v-if="item.poster_path" :src="store.baseImg + item.poster_path" :alt="item.title" >
+        <img v-else src="/images/placeholder.jpg" :alt="item.title" >
       </div>
       <div class="flip-card-back">
         <div class=" p-4 ">

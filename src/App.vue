@@ -1,4 +1,7 @@
 <template>
+  <!-- <div>
+    <video src="/images/NetflixIntro.mp4" autoplay muted></video>
+  </div> -->
   <HeaderComponent @findmovies="printMoviesAndSeries" />
   <MainComponent />
 </template>
@@ -16,7 +19,8 @@ export default {
   },
   data() {
     return {
-      store
+      store,
+      autoplay: true
     }
   },
   methods: {
@@ -27,7 +31,7 @@ export default {
         this.store.movies = response.data.results
         console.log(this.store.movies);
         this.store.flagMovies = true
-       
+
       })
     },
     searchSeries() {
@@ -41,10 +45,34 @@ export default {
       this.searchMovies()
       this.searchSeries()
     },
+    trendingMoviesDay() {
+      axios.get(this.store.baseUrl + this.store.endpoints.trendingMoviesDay, this.store.options).then((response) => {
+        this.store.trendingMoviesDay = response.data.results
+        
+      })
+    },
+    trendingSeriesDay() {
+      axios.get(this.store.baseUrl + this.store.endpoints.trendingSeriesDay, this.store.options).then((response) => {
+        this.store.trendingSeriesDay = response.data.results
+        
+      })
+    }
 
   },
+  computed: {
+        showDefoult() {
+            if (!this.store.options.params.query) {
+                this.store.movies = [];
+                this.store.series = [];
+        } else {
+            this.store.flag = false
+        }
+    }
+    },
   created() {
-    // this.searchMovies()
+    this.trendingMoviesDay();
+    this.trendingSeriesDay();
+    this.showDefoult
   }
 }
 </script>

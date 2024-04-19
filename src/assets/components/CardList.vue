@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-if="list.length > 0">
+    <div class="container-xxl mt-3 ">
         <h2>{{ listTitle }}</h2>
         <div class="carosellBox">
             <div class="dflex " ref="carosel">
@@ -99,5 +99,8 @@ export default {
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.5);
     }
+}
+h2{
+    color: white;
 }
 </style>

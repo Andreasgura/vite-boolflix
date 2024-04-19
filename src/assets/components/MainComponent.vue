@@ -1,6 +1,12 @@
 <template>
-    <CardList listTitle="Film" :list="store.movies"/>
-    <CardList listTitle="Serie" :list="store.series"/>
+    <div v-if="this.store.movies.length > 0">
+        <CardList listTitle="Film" :list="store.movies" />
+        <CardList listTitle="Serie Tv" :list="store.series" />
+    </div>
+    <div v-if="store.flag">
+        <CardList listTitle="Film di tendenza oggi" :list="store.trendingMoviesDay" />
+        <CardList listTitle="Serie Tv di tendenza oggi" :list="store.trendingSeriesDay" />
+    </div>    
 </template>
 
 <script>
@@ -16,7 +22,8 @@ export default {
         return {
             store,
         }
-    }
+    },
+    
 }
 </script>
 

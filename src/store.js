@@ -4,7 +4,9 @@ export const store = reactive({
     baseUrl: 'https://api.themoviedb.org/3/', 
     endpoints: {
         movies: 'search/movie',
-        series: 'search/tv'
+        series: 'search/tv',
+        trendingMoviesDay: 'trending/movie/day',
+        trendingSeriesDay: 'trending/tv/day'
     },
     options : {
         params: {
@@ -14,9 +16,12 @@ export const store = reactive({
         }
     },
     flagMovies: false, 
-    flagSeries: false,  
+    flagSeries: false,
+    flag: true,
     movies: [],
     series: [],
+    trendingMoviesDay: [],
+    trendingSeriesDay: [],
     baseImg: 'https://image.tmdb.org/t/p/w342',
     
 })
